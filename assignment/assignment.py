@@ -41,15 +41,18 @@ def generate_sample(die_type_counts: Tuple[int],
     # Set die_types_draw to a numpy ndarray of indices of randomly selected 
     # dice by using np.random.choice with the optional probabilities p = ... 
     np.random.seed(seed)
-    die_types_drawn = None # YOUR CODE HERE
+    die_type = len(die_type_counts)
+    die_types_drawn = np.random.choice (die_type, size = num_draws, p = die_type_probs)
     # Define roll with the argument structure below, where draw_type is the
     # zero-based index of the type of die to be rolled. Use np.random.choice
     # to produce rolls_per_draw random rolls according to the die_type_face_probs
     # for the die type indicated. The easy way to do this is to use draw_type
     # as an index into die_type_face_probs and feed the result into
     # np.random.choice using the optional p = ... argument.
-    def roll(draw_type: int) -> NDArray[np.integer]:
-        None # YOUR CODE HERE
+    def roll(draw_type: int) -> NDArray[np.integer]: 
+        die_prob = die_type_face_probs[draw_type]
+        die_faces = (len(die_prob))
+        return np.random.choice(die_faces, size = rolls_per_draw, p = die_prob)
     # In python, map returns a map object which can be coerced into a tuple or
     # list, which we then coerce again into an np.array. The final result is an
     # array of num_draws arrays each containing rolls_per_draw rolls.
